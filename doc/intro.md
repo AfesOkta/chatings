@@ -1,3 +1,3 @@
-# Introduction to chattings
+# Introduction to chatings
 
 TODO: write [great documentation](http://jacobian.org/writing/what-to-write/)

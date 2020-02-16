@@ -1,4 +1,4 @@
-(ns chattings.core
+(ns chatings.core
   (:require [luminus.repl-server :as repl]
             [luminus.http-server :as http]
             [config.core :refer [env]])

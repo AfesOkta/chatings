@@ -1,4 +1,4 @@
-(defproject chattings "0.1.0-SNAPSHOT"
+(defproject chatings "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
@@ -41,11 +41,11 @@
                  [prone "1.0.1"]
                  [othello "0.3.0-SNAPSHOT"]]
   :min-lein-version "2.0.0"
-  :uberjar-name "chattings.jar"
+  :uberjar-name "chatings.jar"
   :jvm-opts ["-server"]
   :source-paths ["src/clj"]
 
-  :main chattins.core
+  :main chatings.core
   :migratus {:store :database}
 
-  :repl-options {:init-ns chattings.core})
+  :repl-options {:init-ns chatings.core})
