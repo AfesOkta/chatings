@@ -1,8 +1,15 @@
 (ns chatings.core
-  (:require [luminus.repl-server :as repl]
-            [luminus.http-server :as http]
-            [config.core :refer [env]])
+  (:require
+    [chatings.handler :refer [app init destroy]]
+    [immutant.web :as immutant]
+    [chatings.db.migrations :as migrations]
+    [clojure.tools.nrepl.server :as nrepl]
+    [taoensso.timbre :as timbre]
+    [environ.core :refer [env]])
   (:gen-class))
+
+
+(defonce nrepl-server (atom nil))
 
 (defn parse-port [port]
   (when port
@@ -11,29 +18,64 @@
       (number? port) port
       :else (throw (Exception. (str "invalid port value: " port))))))
 
+(defn stop-nrepl []
+  (when-let [server @nrepl-server]
+    (nrepl/stop-server server)))
+
+(defn start-nrepl
+  "Start a network repl for debugging when the :nrepl-port is set in the environment."
+  []
+  (if @nrepl-server
+    (timbre/error "nREPL is already running!")
+    (when-let [port (env :nrepl-port)]
+      (try
+        (->> port
+             (parse-port)
+             (nrepl/start-server :port)
+             (reset! nrepl-server))
+        (timbre/info "nREPL server started on port" port)
+        (catch Throwable t
+          (timbre/error t "failed to start nREPL"))))))
+
 (defn http-port [port]
-  ;;default production port is set in
-  ;;env/prod/resources/config.edn
-  (parse-port (or port (env :port))))
+  (parse-port (or port (env :port) 3000)))
 
+(defonce http-server (atom nil))
+
+;START:start-server
+(defn start-http-server [port]
+  (init)
+  (reset! http-server (immutant/run app :host "0.0.0.0" :port port)))
+;END:start-server
+
+;START:stop-server
+(defn stop-http-server []
+  (when @http-server
+    (destroy)
+    (immutant/stop @http-server)
+    (reset! http-server nil)))
+;END:stop-server
+
+;START:stop-app
 (defn stop-app []
-  (repl/stop)
-  (http/stop destroy)
+  (stop-nrepl)
+  (stop-http-server)
   (shutdown-agents))
+;END:stop-app
 
-(defn start-app
-  "e.g. lein run 3000"
-  [[port]]
-  (let [port (http-port port)]
-    (.addShutdownHook (Runtime/getRuntime) (Thread.stop-app))
-    (when-let [repl-port (env :nrepl-port)]
-      (repl/start {:port (parse-port repl-port)}))
-    (http/start {:handler app
-                 :init    init
-                 :port    port})))
+;START:start-app
+(defn start-app [[port]]
+  (.addShutdownHook (Runtime/getRuntime) (Thread. stop-app))
+  (start-nrepl)
+  (start-http-server (http-port port))
+  (timbre/info "server started on port:" (:port @http-server)))
+;END:start-app
+
+;START:main
 (defn -main [& args]
   (cond
     (some #{"migrate" "rollback"} args)
     (do (migrations/migrate args) (System/exit 0))
     :else
     (start-app args)))
+;END:main

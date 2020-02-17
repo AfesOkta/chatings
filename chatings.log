@@ -1,0 +1,5 @@
+20-02-17 13:57:50 sanaya INFO [chatings.config:9] - 
+-=[chatings started successfully using the development profile]=-
+20-02-17 13:57:59 sanaya INFO [chatings.core:71] - server started on port: 3000
+20-02-17 14:03:20 sanaya INFO [chatings.handler:39] - chatings is shutting down...
+20-02-17 14:03:20 sanaya INFO [chatings.handler:41] - shutdown complete!
