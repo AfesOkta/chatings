@@ -41,7 +41,8 @@
                  [yesql "0.5.3"]
                  [prone "1.0.1"]
                  [othello "0.3.0-SNAPSHOT"]
-                 [com.carouselapps/to-jdbc-uri "0.5.0"]]
+                 [com.carouselapps/to-jdbc-uri "0.5.0"]
+                 [ajchemist/boot-figwheel "0.5.14-SNAPSHOT"]]
   :min-lein-version "2.0.0"
   :uberjar-name "chatings.jar"
   :jvm-opts ["-server"]
