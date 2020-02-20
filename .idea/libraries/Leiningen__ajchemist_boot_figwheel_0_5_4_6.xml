@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Leiningen: ajchemist/boot-figwheel:0.5.4-6">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/ajchemist/boot-figwheel/0.5.4-6/boot-figwheel-0.5.4-6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

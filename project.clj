@@ -3,7 +3,8 @@
   :url "http://example.com/FIXME"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
             :url  "https://www.eclipse.org/legal/epl-2.0/"}
-  :dependencies [[selmer "1.12.18"]
+  :dependencies [[org.clojure/clojure "1.10.0"]
+                 [selmer "1.12.18"]
                  [markdown-clj "1.10.1"]
                  [environ "1.0.1"]
                  [luminus/config "0.8"]
@@ -42,13 +43,15 @@
                  [prone "1.0.1"]
                  [othello "0.3.0-SNAPSHOT"]
                  [com.carouselapps/to-jdbc-uri "0.5.0"]
-                 [ajchemist/boot-figwheel "0.5.14-SNAPSHOT"]]
+                 [ajchemist/boot-figwheel "0.5.4-6"]]
   :min-lein-version "2.0.0"
   :uberjar-name "chatings.jar"
   :jvm-opts ["-server"]
-  :source-paths ["src/clj"]
+  :source-paths ["src/clj" "src/cljs"]
+  :test-paths ["test/clj"]
+  :target-path "target/%s/"
+  :main ^:skip-aot chatings.core
 
-  :main chatings.core
   :migratus {:store :database}
 
   ;START:cljsbuild
@@ -86,7 +89,7 @@
                                   [pjstadig/humane-test-output "0.7.0"]
                                   [mvxcvi/puget "1.0.0"]]
                    :source-paths ["env/dev/clj"]
-                   :repl-options {:init-ns guestbook.core}
+                   :repl-options {:init-ns chatings.core}
                    :injections   [(require 'pjstadig.humane-test-output)
                                   (pjstadig.humane-test-output/activate!)]
                    ;; when :nrepl-port is set the application

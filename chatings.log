@@ -8,3 +8,17 @@
 20-02-18 03:02:22 dev-desktop INFO [chatings.core:71] - server started on port: 3000
 20-02-18 03:08:39 dev-desktop INFO [chatings.handler:39] - chatings is shutting down...
 20-02-18 03:08:39 dev-desktop INFO [chatings.handler:41] - shutdown complete!
+20-02-20 01:52:21 dev-desktop INFO [chatings.config:10] - 
+-=[chatings started successfully using the development profile]=-
+20-02-20 01:52:21 dev-desktop INFO [chatings.core:71] - server started on port: 3000
+20-02-20 01:57:20 dev-desktop INFO [chatings.handler:39] - chatings is shutting down...
+20-02-20 01:57:20 dev-desktop INFO [chatings.handler:41] - shutdown complete!
+20-02-20 02:06:14 dev-desktop INFO [chatings.config:10] - 
+-=[chatings started successfully using the development profile]=-
+20-02-20 02:06:15 dev-desktop INFO [chatings.core:71] - server started on port: 3000
+20-02-20 02:25:20 dev-desktop INFO [chatings.handler:39] - chatings is shutting down...
+20-02-20 02:25:20 dev-desktop INFO [chatings.handler:41] - shutdown complete!
+20-02-20 02:49:08 dev-desktop INFO [chatings.config:10] - 
+-=[chatings started successfully using the development profile]=-
+20-02-20 02:49:14 dev-desktop INFO [chatings.config:10] - 
+-=[chatings started successfully using the development profile]=-
